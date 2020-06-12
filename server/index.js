@@ -21,7 +21,13 @@ db.select('*')
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-app.get('/', (req, res) => {});
+app.get('/newscount', (req, res) => {
+  db.count('*')
+    .from('news')
+    .then((news) => {
+      res.json(news);
+    });
+});
 
 app.post('/signin', (req, res) => {
   db.select('email', 'hash')
@@ -66,6 +72,27 @@ app.post('/signup', (req, res) => {
   }).catch((err) => res.status(400).json(err));
 });
 
+app.post('/news', (req, res) => {
+  const { numberNews } = req.body;
+  db.select('*')
+    .from('news')
+    .where('id', '>', `${numberNews * 3 - 3}`)
+    .limit(3)
+    .then((news) => {
+      res.json(news);
+    });
+});
+app.post('/newsinfo', (req, res) => {
+  const { newsId } = req.body;
+  console.log(newsId);
+  db.select('*')
+    .from('newsinfo')
+    .where('id', '=', `${newsId}`)
+    .then((news) => {
+      res.json(news);
+    })
+    .catch((err) => res.status(400).json(err));
+});
 app.listen(3001, () => {
   console.log('app is running on port 3000');
 });

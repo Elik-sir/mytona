@@ -1,5 +1,6 @@
 import React from 'react';
 import { format } from 'date-fns';
+import { Link } from 'react-router-dom';
 const NewsComponent = ({ news }) => {
   return (
     <div
@@ -18,7 +19,9 @@ const NewsComponent = ({ news }) => {
         <p>{format(new Date(news.date), 'MM/dd/yyyy')}</p>
       </div>
       <div>
-        <span style={{ cursor: 'pointer' }}>Подробнее</span>
+        <span style={{ cursor: 'pointer' }}>
+          <Link to={`/news/${news.id}`}>Подробнее</Link>
+        </span>
       </div>
     </div>
   );

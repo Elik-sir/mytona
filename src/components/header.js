@@ -14,7 +14,7 @@ const Header = ({ user }) => (
         <Link to='/' style={styles}>
           Главная
         </Link>
-        <Link to='/' style={styles}>
+        <Link to='/news' style={styles}>
           Новости
         </Link>
       </div>

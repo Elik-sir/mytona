@@ -6,6 +6,7 @@ import Signin from './components/Signin';
 import { connect } from 'react-redux';
 import Header from './components/header';
 import NewsPage from './pages/NewsPage/Page';
+import NewsInfoPage from './pages/NewsInfoPage/NewsInfoPage';
 import './App.css';
 
 const App = ({ user }) => {
@@ -27,9 +28,14 @@ const App = ({ user }) => {
           render={() => (user ? <Redirect to='/' /> : <Signup />)}
         />
         <Route
+          exact
           path='/news'
-          render={() => (user ? <NewsPage /> : <Redirect to='/signin' />)}
+          render={
+            (/*<Redirect to='/signin' />*/) =>
+              user ? <NewsPage /> : <NewsPage />
+          }
         />
+        <Route path='/news/:newsId' component={NewsInfoPage} />
       </Switch>
     </div>
   );
