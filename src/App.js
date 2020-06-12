@@ -5,6 +5,7 @@ import Signup from './components/Signup';
 import Signin from './components/Signin';
 import { connect } from 'react-redux';
 import Header from './components/header';
+import NewsPage from './pages/NewsPage/Page';
 import './App.css';
 
 const App = ({ user }) => {
@@ -24,6 +25,10 @@ const App = ({ user }) => {
         <Route
           path='/signup'
           render={() => (user ? <Redirect to='/' /> : <Signup />)}
+        />
+        <Route
+          path='/news'
+          render={() => (user ? <NewsPage /> : <Redirect to='/signin' />)}
         />
       </Switch>
     </div>
