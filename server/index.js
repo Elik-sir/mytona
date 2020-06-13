@@ -8,8 +8,8 @@ const db = knex({
   client: 'pg',
   connection: {
     host: '127.0.0.1',
-    user: 'postgres',
-    password: '141115',
+    user: '', //Нужно написать своего user
+    password: '', //Нужно написать свой пароль
     database: 'mytona',
   },
 });
