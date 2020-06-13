@@ -18,8 +18,9 @@ const Signin = ({ SignInUser }) => {
       .then((user) => {
         if (user.id) {
           SignInUser(user);
-        } else alert('123');
-      });
+        } else alert('Неверный логин или пароль');
+      })
+      .catch((err) => alert('Сервер не отвечает'));
   };
   return (
     <div>

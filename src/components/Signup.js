@@ -20,7 +20,8 @@ const Signup = ({ SignUpUser }) => {
         if (user) {
           SignUpUser(user);
         }
-      });
+      })
+      .catch((err) => alert('пользователь существует или ошибка сервера'));
   };
   return (
     <div>

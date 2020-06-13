@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import Header from './components/header';
 import NewsPage from './pages/NewsPage/Page';
 import NewsInfoPage from './pages/NewsInfoPage/NewsInfoPage';
+import NotFoundPage from './pages/NotFoundPage/Page';
 import './App.css';
 
 const App = ({ user }) => {
@@ -30,12 +31,13 @@ const App = ({ user }) => {
         <Route
           exact
           path='/news'
-          render={
-            (/*<Redirect to='/signin' />*/) =>
-              user ? <NewsPage /> : <NewsPage />
-          }
+          render={() => (user ? <NewsPage /> : <Redirect to='/signin' />)}
         />
-        <Route path='/news/:newsId' component={NewsInfoPage} />
+        <Route
+          path='/news/:newsId'
+          render={() => (user ? <NewsInfoPage /> : <Redirect to='/signin' />)}
+        />
+        <Route component={NotFoundPage} />
       </Switch>
     </div>
   );
